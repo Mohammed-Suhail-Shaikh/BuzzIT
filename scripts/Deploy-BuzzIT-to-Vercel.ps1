@@ -12,14 +12,24 @@ Write-Host '========== BuzzIT -> Vercel ==========' -ForegroundColor Cyan
 Write-Host 'This script deploys the API first, then the website.' -ForegroundColor Gray
 Write-Host ''
 
-# --- Vercel login ---
+# --- Vercel login (whoami writes to stderr when not logged in; must not throw while EAP is Stop) ---
 $npx = 'npx'
-$null = & $npx vercel@latest whoami 2>$null
-if ($LASTEXITCODE -ne 0) {
-  Write-Host 'You need a free Vercel account. Open https://vercel.com/signup if you do not have one yet.' -ForegroundColor Yellow
-  Write-Host 'Press Enter when you are ready to sign in with the Vercel CLI. Your browser may open.' -ForegroundColor Yellow
+$prevEap = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+& $npx vercel@latest whoami 1>$null 2>$null
+$whoamiOk = ($LASTEXITCODE -eq 0)
+$ErrorActionPreference = $prevEap
+
+if (-not $whoamiOk) {
+  Write-Host 'No Vercel login found on this computer. You need a free account: https://vercel.com/signup' -ForegroundColor Yellow
+  Write-Host 'Press Enter to sign in with the Vercel CLI. Your browser may open.' -ForegroundColor Yellow
   Read-Host
+  $ErrorActionPreference = 'Continue'
   & $npx vercel@latest login
+  $ErrorActionPreference = 'Stop'
+  if ($LASTEXITCODE -ne 0) {
+    throw 'vercel login did not finish successfully. Run: npx vercel@latest login'
+  }
 }
 
 # --- Secrets (same values you use locally) ---
