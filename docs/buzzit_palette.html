@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuzzIT — Color Palette</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+  :root {
+    --bg:        #0E0F14;
+    --surface:   #16181F;
+    --border:    rgba(255,255,255,0.07);
+
+    --violet:    #7B5EF6;
+    --violet-soft:#A08BF8;
+    --blush:     #F26A8D;
+    --blush-soft:#F7A4BA;
+    --amber:     #F4A24A;
+    --amber-soft:#F8C98A;
+    --mint:      #3ECFAA;
+    --mint-soft: #83E3CE;
+
+    --text-primary:   #EDEAF5;
+    --text-secondary: rgba(237,234,245,0.5);
+    --text-muted:     rgba(237,234,245,0.28);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 48px 24px 72px;
+  }
+
+  .page { max-width: 780px; margin: 0 auto; }
+
+  /* HEADER */
+  header { margin-bottom: 56px; }
+
+  .wordmark {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1;
+  }
+  .wordmark span {
+    background: linear-gradient(120deg, var(--violet), var(--blush));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  /* ── CORE PALETTE ── */
+  .core-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .swatch-card {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .swatch-color {
+    height: 120px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  .swatch-hex {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.65);
+    background: rgba(0,0,0,0.3);
+    padding: 3px 8px;
+    border-radius: 100px;
+    backdrop-filter: blur(4px);
+  }
+
+  .swatch-info { padding: 14px 16px; }
+
+  .swatch-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .swatch-role {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  /* ── TINTS ── */
+  .tints-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+
+  .tint-col { display: flex; flex-direction: column; gap: 6px; }
+
+  .tint-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .tint-swatch {
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+
+  .tint-swatch span {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── NEUTRALS ── */
+  .neutrals-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+
+  .neutral-swatch {
+    height: 64px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .neutral-swatch .n-name { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+  .neutral-swatch .n-hex  { font-size: 10px; color: var(--text-muted); opacity: 0.6; }
+
+  /* ── USAGE ── */
+  .usage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .usage-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+  }
+
+  .usage-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+  }
+
+  .usage-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .usage-dot {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .usage-text { font-size: 13px; color: var(--text-secondary); line-height: 1.4; }
+
+  /* ── LIVE PREVIEW ── */
+  .preview-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 48px;
+  }
+
+  .preview-event {
+    background: linear-gradient(135deg, rgba(123,94,246,0.15), rgba(242,106,141,0.1));
+    border: 1px solid rgba(123,94,246,0.25);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .preview-cover {
+    width: 72px; height: 72px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--violet), var(--blush));
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .preview-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 6px;
+  }
+
+  .badge-live { background: rgba(62,207,170,0.15); color: var(--mint); border: 1px solid rgba(62,207,170,0.3); }
+  .badge-new  { background: rgba(244,162,74,0.15);  color: var(--amber); border: 1px solid rgba(244,162,74,0.3); }
+
+  .preview-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .preview-meta  { font-size: 12px; color: var(--text-muted); }
+
+  .preview-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary { background: linear-gradient(120deg, var(--violet), var(--blush)); color: #fff; }
+  .btn-secondary { background: rgba(123,94,246,0.12); color: var(--violet-soft); border: 1px solid rgba(123,94,246,0.25); }
+
+  .btn-row { display: flex; gap: 10px; margin-top: 18px; }
+
+  /* ── GRADIENT SHOWCASE ── */
+  .grad-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .grad-pill {
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.5px;
+  }
+
+  hr.div { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="wordmark">Buzz<span>IT</span></div>
+    <div class="subtitle">Brand color palette · 2025</div>
+  </header>
+
+  <!-- CORE -->
+  <div class="section-label">Core palette</div>
+  <div class="core-grid">
+
+    <div class="swatch-card">
+      <div class="swatch-color" style="background: linear-gradient(135deg,#7B5EF6,#9B82F8)">
+        <span class="swatch-hex">#7B5EF6</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Electric Violet</div>
+        <div class="swatch-role">Primary brand color. CTAs, key UI elements</div>
+      </div>
+    </div>
+
+    <div class="swatch-card">
+      <div class="swatch-color" style="background: linear-gradient(135deg,#F26A8D,#F5929F)">
+        <span class="swatch-hex">#F26A8D</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Party Blush</div>
+        <div class="swatch-role">Accent. Rewards, highlights, social moments</div>
+      </div>
+    </div>
+
+    <div class="swatch-card">
+      <div class="swatch-color" style="background: linear-gradient(135deg,#F4A24A,#F7BE7A)">
+        <span class="swatch-hex">#F4A24A</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Warm Amber</div>
+        <div class="swatch-role">Warnings, level-ups, energy indicators</div>
+      </div>
+    </div>
+
+    <div class="swatch-card">
+      <div class="swatch-color" style="background: linear-gradient(135deg,#3ECFAA,#6FE0C8)">
+        <span class="swatch-hex">#3ECFAA</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Mint Spark</div>
+        <div class="swatch-role">Success states, live events, confirmations</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TINTS -->
+  <div class="section-label">Tints & softs</div>
+  <div class="tints-grid">
+    <div class="tint-col">
+      <div class="tint-label">Violet</div>
+      <div class="tint-swatch" style="background:#7B5EF6"><span>#7B5EF6</span></div>
+      <div class="tint-swatch" style="background:#A08BF8"><span>#A08BF8</span></div>
+      <div class="tint-swatch" style="background:rgba(123,94,246,0.2)"><span>20%</span></div>
+      <div class="tint-swatch" style="background:rgba(123,94,246,0.08)"><span>8%</span></div>
+    </div>
+    <div class="tint-col">
+      <div class="tint-label">Blush</div>
+      <div class="tint-swatch" style="background:#F26A8D"><span>#F26A8D</span></div>
+      <div class="tint-swatch" style="background:#F7A4BA"><span>#F7A4BA</span></div>
+      <div class="tint-swatch" style="background:rgba(242,106,141,0.2)"><span>20%</span></div>
+      <div class="tint-swatch" style="background:rgba(242,106,141,0.08)"><span>8%</span></div>
+    </div>
+    <div class="tint-col">
+      <div class="tint-label">Amber</div>
+      <div class="tint-swatch" style="background:#F4A24A"><span>#F4A24A</span></div>
+      <div class="tint-swatch" style="background:#F8C98A"><span>#F8C98A</span></div>
+      <div class="tint-swatch" style="background:rgba(244,162,74,0.2)"><span>20%</span></div>
+      <div class="tint-swatch" style="background:rgba(244,162,74,0.08)"><span>8%</span></div>
+    </div>
+    <div class="tint-col">
+      <div class="tint-label">Mint</div>
+      <div class="tint-swatch" style="background:#3ECFAA"><span>#3ECFAA</span></div>
+      <div class="tint-swatch" style="background:#83E3CE"><span>#83E3CE</span></div>
+      <div class="tint-swatch" style="background:rgba(62,207,170,0.2)"><span>20%</span></div>
+      <div class="tint-swatch" style="background:rgba(62,207,170,0.08)"><span>8%</span></div>
+    </div>
+  </div>
+
+  <!-- NEUTRALS -->
+  <div class="section-label">Neutrals & backgrounds</div>
+  <div class="neutrals-row">
+    <div class="neutral-swatch" style="background:#0E0F14">
+      <span class="n-name">Base</span><span class="n-hex">#0E0F14</span>
+    </div>
+    <div class="neutral-swatch" style="background:#16181F">
+      <span class="n-name">Surface</span><span class="n-hex">#16181F</span>
+    </div>
+    <div class="neutral-swatch" style="background:#1F2130">
+      <span class="n-name">Elevated</span><span class="n-hex">#1F2130</span>
+    </div>
+    <div class="neutral-swatch" style="background:#EDEAF5">
+      <span class="n-name" style="color:#0E0F14">Text</span><span class="n-hex" style="color:#0E0F14">#EDEAF5</span>
+    </div>
+    <div class="neutral-swatch" style="background:rgba(237,234,245,0.45)">
+      <span class="n-name">Muted</span><span class="n-hex">45% text</span>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- GRADIENTS -->
+  <div class="section-label">Signature gradients</div>
+  <div class="grad-row">
+    <div class="grad-pill" style="background: linear-gradient(120deg,#7B5EF6,#F26A8D)">Brand · Violet → Blush</div>
+    <div class="grad-pill" style="background: linear-gradient(120deg,#F26A8D,#F4A24A)">Energy · Blush → Amber</div>
+    <div class="grad-pill" style="background: linear-gradient(120deg,#7B5EF6,#3ECFAA)">Fresh · Violet → Mint</div>
+  </div>
+
+  <hr class="div">
+
+  <!-- USAGE -->
+  <div class="section-label">Color usage guide</div>
+  <div class="usage-grid">
+    <div class="usage-card">
+      <div class="usage-card-title">UI roles</div>
+      <div class="usage-item">
+        <div class="usage-dot" style="background:linear-gradient(135deg,#7B5EF6,#F26A8D)"></div>
+        <div class="usage-text">Primary buttons, brand moments</div>
+      </div>
+      <div class="usage-item">
+        <div class="usage-dot" style="background:#3ECFAA"></div>
+        <div class="usage-text">Live events, success, RSVP confirmed</div>
+      </div>
+      <div class="usage-item">
+        <div class="usage-dot" style="background:#F4A24A"></div>
+        <div class="usage-text">Level-ups, rewards earned, alerts</div>
+      </div>
+      <div class="usage-item">
+        <div class="usage-dot" style="background:#F26A8D"></div>
+        <div class="usage-text">Social, referrals, party highlights</div>
+      </div>
+    </div>
+    <div class="usage-card">
+      <div class="usage-card-title">Stakeholder tints</div>
+      <div class="usage-item">
+        <div class="usage-dot" style="background:rgba(123,94,246,0.2); border:1px solid rgba(123,94,246,0.4)"></div>
+        <div class="usage-text">Party-goer surfaces + tags</div>
+      </div>
+      <div class="usage-item">
+        <div class="usage-dot" style="background:rgba(242,106,141,0.2); border:1px solid rgba(242,106,141,0.4)"></div>
+        <div class="usage-text">Host / organizer surfaces</div>
+      </div>
+      <div class="usage-item">
+        <div class="usage-dot" style="background:rgba(244,162,74,0.2); border:1px solid rgba(244,162,74,0.4)"></div>
+        <div class="usage-text">Venue / supply-side surfaces</div>
+      </div>
+      <div class="usage-item">
+        <div class="usage-dot" style="background:rgba(62,207,170,0.2); border:1px solid rgba(62,207,170,0.4)"></div>
+        <div class="usage-text">Brand / rewards partner surfaces</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- LIVE PREVIEW -->
+  <div class="section-label">Live UI preview</div>
+  <div class="preview-card">
+
+    <div class="preview-event">
+      <div class="preview-cover">🎉</div>
+      <div>
+        <span class="preview-badge badge-live">● Live now</span>
+        <div class="preview-title">Rooftop Rave · Bandra</div>
+        <div class="preview-meta">Hosted by @karan · 42 attending · ₹300 cover</div>
+      </div>
+    </div>
+
+    <div class="preview-event">
+      <div class="preview-cover" style="background: linear-gradient(135deg,#F4A24A,#F26A8D)">🏠</div>
+      <div>
+        <span class="preview-badge badge-new">New</span>
+        <div class="preview-title">House Party · Powai</div>
+        <div class="preview-meta">Hosted by @meera · 18 attending · Free entry</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="preview-btn btn-primary">RSVP Now</button>
+      <button class="preview-btn btn-secondary">Save Event</button>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

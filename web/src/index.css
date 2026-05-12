@@ -1,0 +1,68 @@
+@import url('leaflet/dist/leaflet.css');
+
+/* Tokens aligned with docs/buzzit_palette.html */
+:root {
+  --bg: #0e0f14;
+  --surface: #16181f;
+  --elevated: #1f2130;
+  --border: rgba(255, 255, 255, 0.07);
+
+  --violet: #7b5ef6;
+  --violet-soft: #a08bf8;
+  --blush: #f26a8d;
+  --blush-soft: #f7a4ba;
+  --amber: #f4a24a;
+  --amber-soft: #f8c98a;
+  --mint: #3ecfaa;
+  --mint-soft: #83e3ce;
+
+  --text-primary: #edeaf5;
+  --text-secondary: rgba(237, 234, 245, 0.55);
+  --text-muted: rgba(237, 234, 245, 0.28);
+
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  /* Light elegant label (landing hero eyebrow) */
+  --font-fancy-light: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  /* Slanted poster headline on landing hero */
+  --font-party: 'Fugaz One', system-ui, sans-serif;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--violet-soft);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--blush-soft);
+}

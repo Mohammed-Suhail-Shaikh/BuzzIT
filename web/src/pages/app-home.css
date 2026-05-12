@@ -1,0 +1,221 @@
+.appHome {
+  min-height: 100vh;
+  padding: 2.5rem 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.appHome__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.appHome__brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.appHome__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.appHome__signOut {
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(123, 94, 246, 0.28);
+  background: rgba(123, 94, 246, 0.1);
+  color: var(--violet-soft);
+  cursor: pointer;
+  font: inherit;
+}
+
+.appHome__signOut:hover {
+  background: rgba(123, 94, 246, 0.18);
+  color: var(--text-primary);
+}
+
+.appHome__hero {
+  margin-top: 2.25rem;
+}
+
+.appHome__hero h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.appHome__hero p {
+  color: var(--text-secondary);
+  max-width: 64ch;
+  margin: 0.75rem 0 0;
+  line-height: 1.6;
+}
+
+.appHome__mapCard {
+  margin-top: 1.75rem;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.appHome__mapHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 1rem 1rem 0.75rem;
+}
+
+.appHome__mapTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.appHome__mapHint {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.appHome__map {
+  height: min(62vh, 560px);
+  width: 100%;
+}
+
+.appHome__mapWrap {
+  position: relative;
+}
+
+.appHome__mapButtons {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(22, 24, 31, 0.86);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.appHome__mapBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+
+.appHome__mapBtn:hover {
+  background: rgba(123, 94, 246, 0.14);
+  border-color: rgba(123, 94, 246, 0.35);
+}
+
+.appHome__mapBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.appHome__mapBtnLocate {
+  color: var(--violet-soft);
+}
+
+.appHome__mapBtnLocate .appHome__mapBtnIcon {
+  animation: none;
+}
+
+.appHome__mapBtnLocate:disabled .appHome__mapBtnIcon {
+  animation: appHomeSpin 0.9s linear infinite;
+}
+
+.appHome__mapBtnLocate:disabled {
+  opacity: 0.8;
+}
+
+.appHome__mapBtnStyle {
+  color: var(--text-secondary);
+  font-weight: 800;
+}
+
+.appHome__mapBtnIcon {
+  display: block;
+}
+
+@keyframes appHomeSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.appHome__mapBtnSep {
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.leaflet-container {
+  background: #0e0f14;
+}
+
+/* Reduce seam artifacts + make interactions feel smoother */
+.leaflet-container,
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.leaflet-tile {
+  image-rendering: auto;
+}
+
+/* Custom BuzzIT marker */
+.buzzitMarker {
+  width: 22px;
+  height: 22px;
+  position: relative;
+}
+
+.buzzitMarker__dot {
+  position: absolute;
+  inset: 4px;
+  border-radius: 999px;
+  background: #7b5ef6;
+  box-shadow:
+    0 0 0 2px rgba(14, 15, 20, 0.9),
+    0 10px 26px rgba(123, 94, 246, 0.25);
+}
+
+.buzzitMarker__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(123, 94, 246, 0.55);
+  background: rgba(123, 94, 246, 0.12);
+}
+
