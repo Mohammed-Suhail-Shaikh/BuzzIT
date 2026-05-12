@@ -20,3 +20,14 @@ export const webCorsOrigins = env.WEB_ORIGIN.split(',')
   .map((o) => o.trim())
   .filter(Boolean)
 
+/**
+ * Use `WEB_ORIGIN=*` on Vercel so any `*.vercel.app` (or other) site can call the API
+ * without listing every preview URL. Tighten to comma-separated origins for production hardening.
+ */
+export const corsOrigin: boolean | string | string[] =
+  webCorsOrigins.length === 1 && webCorsOrigins[0] === '*'
+    ? true
+    : webCorsOrigins.length === 1
+      ? webCorsOrigins[0]
+      : webCorsOrigins
+

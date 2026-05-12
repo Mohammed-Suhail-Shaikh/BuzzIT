@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "missing": [{ "type": "file", "value": "/:path*" }],
+      "destination": "/index.html"
+    }
+  ]
+}
