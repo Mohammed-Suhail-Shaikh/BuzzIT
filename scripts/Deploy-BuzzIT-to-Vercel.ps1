@@ -32,12 +32,41 @@ if (-not $whoamiOk) {
   }
 }
 
-# --- Secrets (same values you use locally) ---
+# --- Google Client ID (same as VITE_GOOGLE_CLIENT_ID in web\.env) ---
 Write-Host ''
-Write-Host 'Google OAuth Client ID, looks like xxx.apps.googleusercontent.com:' -ForegroundColor Green
-$googleClientId = Read-Host
-if ([string]::IsNullOrWhiteSpace($googleClientId)) {
-  throw 'GOOGLE_CLIENT_ID is required.'
+$googleClientId = $null
+$webEnvPath = Join-Path $repoRoot 'web\.env'
+if (Test-Path $webEnvPath) {
+  foreach ($line in Get-Content $webEnvPath -ErrorAction SilentlyContinue) {
+    if ($line -match '^\s*VITE_GOOGLE_CLIENT_ID\s*=\s*"?([^"#\s]+)"?\s*$') {
+      $googleClientId = $matches[1].Trim()
+      break
+    }
+  }
+}
+if ([string]::IsNullOrWhiteSpace($googleClientId) -and -not [string]::IsNullOrWhiteSpace($env:GOOGLE_CLIENT_ID)) {
+  $googleClientId = $env:GOOGLE_CLIENT_ID.Trim()
+}
+if (-not [string]::IsNullOrWhiteSpace($googleClientId)) {
+  Write-Host 'Found a Client ID in web\.env or in the GOOGLE_CLIENT_ID environment variable.' -ForegroundColor DarkGray
+  Write-Host "  $($googleClientId.Substring(0, [Math]::Min(24, $googleClientId.Length)))..." -ForegroundColor DarkGray
+  Write-Host 'Press Enter to use it, or paste a different Client ID:' -ForegroundColor Green
+  $override = Read-Host
+  if (-not [string]::IsNullOrWhiteSpace($override)) {
+    $googleClientId = $override.Trim().Trim('"').Trim("'")
+  }
+} else {
+  Write-Host 'Paste your Google OAuth Web Client ID.' -ForegroundColor Green
+  Write-Host '  Where: Google Cloud Console, APIs and Services, Credentials, OAuth 2.0 Client IDs.' -ForegroundColor Gray
+  Write-Host '  Shape: something.apps.googleusercontent.com' -ForegroundColor Gray
+  Write-Host '  Tip: Add VITE_GOOGLE_CLIENT_ID=... to web\.env and run this script again to skip typing.' -ForegroundColor Gray
+  while ([string]::IsNullOrWhiteSpace($googleClientId)) {
+    $googleClientId = Read-Host 'Client ID'
+    $googleClientId = $googleClientId.Trim().Trim('"').Trim("'")
+    if ([string]::IsNullOrWhiteSpace($googleClientId)) {
+      Write-Host 'Nothing was entered. Paste the full Client ID from Google Cloud, then press Enter.' -ForegroundColor Yellow
+    }
+  }
 }
 
 Write-Host ''
