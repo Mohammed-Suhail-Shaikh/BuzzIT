@@ -54,3 +54,5 @@ app.post('/auth/google', async (req, res) => {
     return res.status(401).json({ error: 'Google token verification failed' })
   }
 })
+
+export default app
